@@ -31,8 +31,9 @@ export const useProductStore = create((set) => ({
 		if (!data.success) return { success: false, message: data.message };
 
 		// update the ui immediately, without needing a refresh
-		set((state) => ({ products: state.products.filter((product) => product._id !== pid) }));
-		return { success: true, message: data.message };
+		set((state) => ({
+			products: state.products.filter((product) => product._id !== pid),
+		}));
 	},
 	updateProduct: async (pid, updatedProduct) => {
 		const res = await fetch(`/api/products/${pid}`, {
